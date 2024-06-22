@@ -1,4 +1,5 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { Menu } from "../../interfaces/Menu";
 
 export const fetchMenu = createAsyncThunk(
     'fetchMenu', 
@@ -11,7 +12,7 @@ const menuSlice = createSlice({
     name: 'menu',
     initialState: {
         isLoading: false,
-        data: null,
+        data: null as Menu[] | null,
         isError: false,
     },
     reducers: {},

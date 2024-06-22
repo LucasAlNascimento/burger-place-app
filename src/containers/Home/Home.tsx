@@ -1,6 +1,6 @@
-import Header from "../../components/Header/header";
-import Search from "../../components/Search/search";
-import Navigation from "../../components/Navigation/navigation";
+import Header from "../../components/Header/Header";
+import Search from "../../components/Search/Search";
+import Navigation from "../../components/Navigation/Navigation";
 
 export default function Home() {
     return (
