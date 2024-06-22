@@ -2,7 +2,7 @@ import { configureStore, combineReducers } from "@reduxjs/toolkit";
 
 import menuReducer from "./slice/Menu";
 import basketReducer from "./slice/Basket";
-import searchReducer from "./slice/Basket";
+import searchReducer from "./slice/Search";
 
 import { BasketState } from '../interfaces/Basket';
 

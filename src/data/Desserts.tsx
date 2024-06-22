@@ -15,6 +15,7 @@ export default function DrinksData() {
 
     const dispatch: AppDispatch = useDispatch();
     const { isLoading, data, isError } = useSelector((state: RootState) => state.menu);
+    const searchTerm = useSelector((state: RootState) => state.search.term)
 
     useEffect(() => {
         dispatch(fetchMenu());
@@ -43,6 +44,8 @@ export default function DrinksData() {
         });
     });
 
+    const filteredItems = filteredDesserts.filter(item => item.name.toLowerCase().includes(searchTerm.toLowerCase()))
+
     return (
         <div className='flex flex-col gap-8'>
             <div className='flex flex-row justify-between'>
@@ -50,7 +53,7 @@ export default function DrinksData() {
                 <button className='mr-5'>?</button>
             </div>
             <ul>
-                {filteredDesserts.map((item: MenuItem) => (
+                {filteredItems.map((item: MenuItem) => (
                     <li key={item.id} className='flex mb-7 p-5 justify-between w-full h-auto hover:bg-gray-100 hover:scale-95 hover:rounded-md hover:transition-all hover:ease-in-out hover:duration-500 duration-500'>
                         <div className='flex flex-col w-full'>
                             <h4 className='font-medium'>{item.name}</h4>
