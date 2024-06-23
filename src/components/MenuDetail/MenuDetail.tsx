@@ -54,7 +54,7 @@ const MenuDetail: React.FC = () => {
         const selectedOptionId = selectedModifiers[modifier.id];
         const selectedOption = modifier.items.find((item) => item.id === selectedOptionId);
         if (selectedOption) {
-          totalPrice += selectedOption.price || 0;
+          totalPrice += selectedOption.price * quantity || 0;
         }
       });
     }
