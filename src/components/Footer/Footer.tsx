@@ -3,7 +3,7 @@ import { openModal } from "../../redux/slice/Modal";
 import { AppDispatch } from "../../redux/Store";
 import Basket from "../Basket/Basket";
 import { RootState } from "../../redux/Store";
-
+import { BasketItem } from "../../interfaces/Basket";
 
 export default function Footer() {
     const dispatch: AppDispatch = useDispatch();
@@ -13,7 +13,7 @@ export default function Footer() {
 
     const items = useSelector((state: RootState) => state.basket.items);
 
-    const totalItems = items.reduce((total, item) => total + item.quantity, 0);
+    const totalItems = items.reduce((total:number, item:BasketItem) => total + item.quantity, 0);
 
     return (
         <footer className="flex flex-col">

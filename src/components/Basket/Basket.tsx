@@ -41,7 +41,7 @@ export default function Basket() {
     return itemPrice * item.quantity;
   };
 
-  const totalAmount = items.reduce((total, item) => total + calculateItemPrice(item), 0);
+  const totalAmount = items.reduce((total:number, item:BasketItem) => total + calculateItemPrice(item), 0);
 
   const handleAddItem = (item: BasketItem) => {
     dispatch(addItem(item));

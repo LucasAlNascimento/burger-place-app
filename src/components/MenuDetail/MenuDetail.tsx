@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from '../../redux/Store';
 import { closeMenuDetail, selectModifierOption } from '../../redux/slice/MenuDetail';
 import { addItem } from '../../redux/slice/Basket';
-import { Modifier, ModifierOption } from '../../interfaces/Menu';
+import { MenuItem, Modifier, ModifierOption } from '../../interfaces/Menu';
 import { HiMinusCircle, HiPlusCircle } from 'react-icons/hi';
 
 const MenuDetail: React.FC = () => {
@@ -30,7 +30,7 @@ const MenuDetail: React.FC = () => {
       const itemToAdd = {
         ...selectedItem,
         quantity: quantity,
-        modifiers: selectedItem.modifiers?.map((modifier) => ({
+        modifiers: selectedItem.modifiers?.map((modifier: Modifier) => ({
           ...modifier,
           selectedOptionId: selectedModifiers[modifier.id],
         })),
@@ -50,9 +50,9 @@ const MenuDetail: React.FC = () => {
   const calculateTotalPrice = (): number => {
     let totalPrice = selectedItem.price || 0;
     if (selectedItem.modifiers) {
-      selectedItem.modifiers.forEach((modifier) => {
+      selectedItem.modifiers.forEach((modifier: Modifier) => {
         const selectedOptionId = selectedModifiers[modifier.id];
-        const selectedOption = modifier.items.find((item) => item.id === selectedOptionId);
+        const selectedOption = modifier.items.find((item: MenuItem) => item.id === selectedOptionId);
         if (selectedOption) {
           totalPrice += selectedOption.price * quantity || 0;
         }
