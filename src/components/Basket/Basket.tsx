@@ -128,6 +128,11 @@ export default function Basket() {
                   <h3 className='font-light text-2xl'>Total:</h3>
                   <p className='font-bold text-2xl'>{formatPrice(totalAmount)}</p>
                 </div>
+                <div className='h-full items-end mt-[350px] pb-4'>
+                  <button className='w-full h-10 bg-[#4F372F] text-white rounded-[40px]'>
+                    Checkout now
+                  </button>
+                </div>
               </div>
             </>
           )}

@@ -47,6 +47,22 @@ const MenuDetail: React.FC = () => {
     }
   };
 
+  const calculateTotalPrice = (): number => {
+    let totalPrice = selectedItem.price || 0;
+    if (selectedItem.modifiers) {
+      selectedItem.modifiers.forEach((modifier) => {
+        const selectedOptionId = selectedModifiers[modifier.id];
+        const selectedOption = modifier.items.find((item) => item.id === selectedOptionId);
+        if (selectedOption) {
+          totalPrice += selectedOption.price || 0;
+        }
+      });
+    }
+    return totalPrice;
+  };
+
+  const totalPrice = calculateTotalPrice();
+
   return (
     <div className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
       <div className="flex justify-center items-center w-full h-screen bg-none lg:w-[480px] lg:h-[720px]">
@@ -57,18 +73,18 @@ const MenuDetail: React.FC = () => {
             )}
             <img src="public/assets/closeicon.svg" alt="Botão de Fechar" onClick={handleCloseModal} className='absolute top-3 right-3 text-4xl text-white cursor-pointer'/>
           </div>
-          <div className='flex flex-col h-full'>
+          <div className='flex flex-col h-auto'>
             <h2 className="p-5 text-xl font-bold">{selectedItem.name}</h2>
-            <p className='px-5 text-gray-600 -mt-3'>{selectedItem.description}</p>
+            <p className='px-5 text-gray-600'>{selectedItem.description}</p>
             {selectedItem.modifiers && selectedItem.modifiers.length > 0 && (
-              <div className='mt-5'>
+              <div className='mt-5 flex-1'>
                 <div className='w-full bg-gray-100 px-5 py-3'>
                   <h3 className="font-bold">Choose your size</h3>
                   <h4 className='font-light -mt-1'>Select 1 option</h4>
                 </div>
-                <div className='px-5 mt-4'>
+                <div className='px-5 mt-4 overflow-y-auto'>
                   {selectedItem.modifiers.map((modifier: Modifier) => (
-                    <div key={modifier.id} className=''>
+                    <div key={modifier.id}>
                       <ul>
                         {modifier.items.map((option: ModifierOption) => (
                           <li key={option.id} className='flex justify-between items-center mb-2'>
@@ -93,14 +109,14 @@ const MenuDetail: React.FC = () => {
               </div>
             )}
           </div>
-          <div className='flex flex-col items-center justify-center bg-gray-100 py-4 px-5 gap-4 border-t border-gray-200 absolute bottom-auto left-0 right-0'>
+          <div className='flex flex-col items-center justify-center bg-gray-100 py-4 px-5 gap-4 border-t border-gray-200 absolute -bottom-14 left-0 right-0'>
             <div className='flex items-center justify-center gap-4'>
               <button onClick={() => handleQuantityChange(-1)} className='text-4xl text-gray-400'><HiMinusCircle /></button>
               <span>{quantity}</span>
               <button onClick={() => handleQuantityChange(1)} className='text-4xl text-[#4F372F]'><HiPlusCircle /></button>
             </div>
             <button onClick={handleAddToBasket} className='w-full h-10 bg-[#4F372F] text-white rounded-[40px]'>
-              Add to Order
+              Add to Order • {formatPrice(totalPrice)}
             </button>
           </div>
         </div>
