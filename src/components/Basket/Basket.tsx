@@ -1,4 +1,5 @@
 import { useSelector, useDispatch } from 'react-redux';
+import { useEffect, useState } from 'react';
 import { RootState } from '../../redux/Store';
 import { addItem, removeItem } from '../../redux/slice/Basket';
 import { closeModal } from '../../redux/slice/Modal';
@@ -10,10 +11,12 @@ import { HiMinusCircle } from 'react-icons/hi';
 import { HiPlusCircle } from 'react-icons/hi';
 import { IoClose } from 'react-icons/io5';
 
-export default function Basket () {
+export default function Basket() {
   const dispatch = useDispatch();
   const { items } = useSelector((state: RootState) => state.basket);
   const isOpen = useSelector((state: RootState) => state.modal.isOpen);
+
+  const [isLargeScreen, setIsLargeScreen] = useState(false);
 
   const formatPrice = (price: number): string => {
     return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(price);
@@ -45,18 +48,41 @@ export default function Basket () {
   };
 
   const handleRemoveItem = (item: BasketItem) => {
-    dispatch(removeItem({ id: item.id, modifiers: item.modifiers}));
+    dispatch(removeItem({ id: item.id, modifiers: item.modifiers }));
   };
 
-  if (!isOpen) return null;
+  useEffect(() => {
+    const handleResize = () => {
+      if (window.innerWidth >= 1024) {
+        setIsLargeScreen(true);
+      } else {
+        setIsLargeScreen(false);
+      }
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    // Call the function initially to set the correct state
+    handleResize();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, []);
+
+  if (!isOpen && !isLargeScreen) return null;
 
   return (
-    <div className='fixed inset-0 flex items-center justify-center bg-black bg-opacity-50'>
-      <div className='flex justify-center items-center w-full h-screen z-50 fixed top-0 left-0 right-0 bottom-0 bg-none'>
-        <div className='w-full h-screen bg-white'>
+    <div className={`lg:w-96 lg:bg-white lg:shadow-xl ${isLargeScreen ? 'lg:absolute lg:top-5 lg:right-4 lg:h-auto lg:overflow-y-auto lg:z-50' : 'lg:relative'}`}>
+      <div className='flex justify-center items-center w-full h-screen z-50 fixed top-0 left-0 right-0 bottom-0 bg-none lg:relative lg:h-full lg:w-96'>
+        <div className='w-full h-screen bg-white lg:h-full lg:shadow-xl'>
           <div className='w-full h-16 flex items-center border-b'>
             <h2 className='relative flex w-full items-center justify-center font-medium text-lg'>Basket</h2>
-            <button onClick={handleClose} className='absolute right-7 bg-none border-none text-md cursor-pointer'><IoClose /></button>
+            {!isLargeScreen && (
+              <button onClick={handleClose} className='absolute right-7 bg-none border-none text-md cursor-pointer'>
+                <IoClose />
+              </button>
+            )}
           </div>
           {items.length === 0 ? (
             <div className='flex p-5'>
@@ -86,16 +112,14 @@ export default function Basket () {
                       </div>
                     )}
                     <div className='relative flex items-center gap-4'>
-                      <button onClick={() => handleRemoveItem(item)} className='text-2xl text-[#4F372F]'><HiMinusCircle />
-                      </button>
+                      <button onClick={() => handleRemoveItem(item)} className='text-2xl text-[#4F372F]'><HiMinusCircle /></button>
                       <p className='font-bold'>{item.quantity}</p>
-                      <button onClick={() => handleAddItem(item)} className='text-2xl text-[#4F372F]'><HiPlusCircle />
-                      </button>
+                      <button onClick={() => handleAddItem(item)} className='text-2xl text-[#4F372F]'><HiPlusCircle /></button>
                     </div>
                   </li>
                 ))}
               </ul>
-              <div className='w-full h-full px-5 bg-gray-100'>
+              <div className='w-full h-full px-5 bg-gray-100 lg:h-auto'>
                 <div className='flex py-5 justify-between'>
                   <h3>Sub total</h3>
                   <p className='font-medium'>{formatPrice(totalAmount)}</p>

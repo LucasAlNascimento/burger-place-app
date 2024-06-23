@@ -5,7 +5,6 @@ import { closeMenuDetail, selectModifierOption } from '../../redux/slice/MenuDet
 import { addItem } from '../../redux/slice/Basket';
 import { Modifier, ModifierOption } from '../../interfaces/Menu';
 import { HiMinusCircle, HiPlusCircle } from 'react-icons/hi';
-import { IoIosCloseCircle } from "react-icons/io";
 
 
 

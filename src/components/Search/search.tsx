@@ -13,19 +13,20 @@ export default function Search() {
     };
 
     return (
-        <div className="w-auto mx-5 translate-y-5 rounded-lg border-gray-400 border">
-            <form
-                className="flex flex-row justify-center items-center ml-4"
-            >
-                <i className="text-gray-400 text-2xl"><IoSearch /></i>
-                <input
-                    className="w-full h-10 px-6 rounded-full bg-transparent text-md outline-none"
-                    type="text"
-                    placeholder="Search menu items"
-                    onChange={searchChange}
-                />
-
-            </form>
+        <div className="flex w-full px-5 lg:px-0 justify-center items-center">
+            <div className="w-full translate-y-5 rounded-lg border-gray-400 border lg:max-w-5xl">
+                <form
+                    className="flex flex-row justify-center items-center ml-4"
+                >
+                    <i className="text-gray-400 text-2xl"><IoSearch /></i>
+                    <input
+                        className="w-full h-10 px-6 rounded-full bg-transparent text-md outline-none"
+                        type="text"
+                        placeholder="Search menu items"
+                        onChange={searchChange}
+                    />
+                </form>
+            </div>
         </div>
     );
 }
