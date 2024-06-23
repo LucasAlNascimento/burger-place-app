@@ -3,6 +3,8 @@ import { configureStore, combineReducers } from "@reduxjs/toolkit";
 import menuReducer from "./slice/Menu";
 import basketReducer from "./slice/Basket";
 import searchReducer from "./slice/Search";
+import modalReducer from "./slice/Modal";
+import menuDetailReducer from "./slice/MenuDetail";
 
 import { BasketState } from '../interfaces/Basket';
 
@@ -11,6 +13,8 @@ const rootReducer = combineReducers({
     menu: menuReducer,
     basket: basketReducer,
     search: searchReducer,
+    modal: modalReducer,
+    menuDetail: menuDetailReducer,
 });
 
 export const store = configureStore({

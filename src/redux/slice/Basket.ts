@@ -1,7 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-import { MenuItem } from '../../interfaces/Menu';
 import { BasketState } from '../../interfaces/Basket';
+import { MenuItem, Modifier } from '../../interfaces/Menu';
 
 const initialState: BasketState = {
   items: [],
@@ -12,22 +12,52 @@ const basketSlice = createSlice({
   initialState,
   reducers: {
     addItem(state, action: PayloadAction<MenuItem>) {
-      state.items.push(action.payload);
+      const newItem = action.payload;
+
+      const existingItemIndex = state.items.findIndex(item => {
+        if (item.id !== newItem.id) return false;
+        if (item.modifiers?.length !== newItem.modifiers?.length) return false;
+        if (item.modifiers && newItem.modifiers) {
+          for (let i = 0; i < item.modifiers.length; i++) {
+            const existingModifier = item.modifiers[i];
+            const newModifier = newItem.modifiers.find(mod => mod.id === existingModifier.id);
+
+            if (!newModifier || existingModifier.selectedOptionId !== newModifier.selectedOptionId) {
+              return false; 
+            }
+          }
+        }
+
+        return true;
+      });
+
+      if (existingItemIndex !== -1) {
+        state.items[existingItemIndex].quantity += 1;
+      } else {
+        state.items.push({ ...newItem, quantity: 1 });
+      }
+
       localStorage.setItem('basket', JSON.stringify(state));
     },
-    removeItem(state, action: PayloadAction<number>) {
-      const index = state.items.findIndex(item => item.id === action.payload);
-      if (index !== -1) {
-        state.items.splice(index, 1);
-        localStorage.setItem('basket', JSON.stringify(state));
+    removeItem: (state, action: PayloadAction<{ id: number, modifiers?: Modifier[] }>) => {
+      const { id, modifiers } = action.payload;
+      const existingItemIndex = state.items.findIndex(
+        i => i.id === id && JSON.stringify(i.modifiers) === JSON.stringify(modifiers)
+      );
+
+      if (existingItemIndex !== -1) {
+        const existingItem = state.items[existingItemIndex];
+        if (existingItem.quantity > 1) {
+          existingItem.quantity -= 1;
+        } else {
+          state.items.splice(existingItemIndex, 1);
+        }
       }
-    },
-    clearBasket(state) {
-      state.items = [];
     },
   },
 });
 
-export const { addItem, removeItem, clearBasket } = basketSlice.actions;
+
+export const { addItem, removeItem } = basketSlice.actions;
 
 export default basketSlice.reducer;

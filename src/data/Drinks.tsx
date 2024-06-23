@@ -7,6 +7,9 @@ import { fetchMenu } from '../redux/slice/Menu';
 
 import { Menu, MenuItem } from '../interfaces/Menu';
 
+import { IoIosArrowUp } from "react-icons/io";
+
+
 
 const formatPrice = (price: number): string => {
     return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(price);
@@ -51,7 +54,7 @@ export default function DrinksData() {
         <div className='flex flex-col gap-8'>
             <div className='flex flex-row justify-between'>
                 <h2 className='ml-5 text-2xl font-medium'>Drinks</h2>
-                <button className='mr-5'>?</button>
+                <button className='mr-5 text-3xl'><IoIosArrowUp /></button>
             </div>
             <ul>
                 {filteredItems.map((item: MenuItem) => (

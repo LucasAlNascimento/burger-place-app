@@ -6,10 +6,23 @@ export default {
   ],
   theme: {
     extend: {
+      utilities: {
+        '.all-unset': {
+          all: 'unset',
+        }
+      },
       fontFamily: {
         sans: ['Roboto', 'sans-serif'],
       },
     },
-    plugins: [],
+    plugins: [
+      function ({ addUtilities }) {
+        addUtilities({
+          '.all-unset': {
+            all: 'unset',
+          }
+        })
+      }
+    ],
   }
 }

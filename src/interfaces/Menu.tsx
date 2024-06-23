@@ -4,12 +4,30 @@ export interface Image {
 }
 
 export interface Modifier {
+    selectedOptionId: ReactNode;
     id: number;
     name: string;
     minChoices: number;
     maxChoices: number;
     items: MenuItem[];
 }
+
+export interface ModifierItem {
+    id: number;
+    name: string;
+    price: number;
+    maxChoices: number;
+    position: number;
+    visible: number;
+    availabilityType: string;
+    available: boolean;
+}
+
+export interface ModifierOption {
+    id: number;
+    name: string;
+    price: number;
+  }
 
 export interface MenuItem {
     id: number;
