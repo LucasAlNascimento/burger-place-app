@@ -1,7 +1,7 @@
 import { useState } from "react";
-import Desserts from "../../data/Desserts";
-import Drinks from "../../data/Drinks";
-import Hamburguer from "../../data/Hamburguer";
+import Desserts from "../../data/desserts";
+import Drinks from "../../data/drinks";
+import Hamburguer from "../../data/hamburguer";
 
 export default function Navigation() {
     const [activeCategory, setActiveCategory] = useState<string>('hamburguer');

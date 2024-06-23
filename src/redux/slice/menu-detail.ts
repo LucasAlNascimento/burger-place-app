@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { MenuItem } from '../../interfaces/Menu';
-import { MenuDetailState } from '../../interfaces/MenuDetail';
+import { MenuItem } from '../../interfaces/menu';
+import { MenuDetailState } from '../../interfaces/menu-detail';
 
 const initialState: MenuDetailState = {
   isOpen: false,

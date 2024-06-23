@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { setSearchTerm } from "../../redux/slice/Search";
+import { setSearchTerm } from "../../redux/slice/search";
 
 import { IoSearch } from "react-icons/io5";
 

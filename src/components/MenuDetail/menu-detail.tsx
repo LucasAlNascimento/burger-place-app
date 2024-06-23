@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { RootState } from '../../redux/Store';
-import { closeMenuDetail, selectModifierOption } from '../../redux/slice/MenuDetail';
-import { addItem } from '../../redux/slice/Basket';
-import { MenuItem, Modifier, ModifierOption } from '../../interfaces/Menu';
+import { RootState } from '../../redux/store';
+import { closeMenuDetail, selectModifierOption } from '../../redux/slice/menu-detail';
+import { addItem } from '../../redux/slice/basket';
+import { MenuItem, Modifier, ModifierOption } from '../../interfaces/menu';
 import { HiMinusCircle, HiPlusCircle } from 'react-icons/hi';
 
 const MenuDetail: React.FC = () => {

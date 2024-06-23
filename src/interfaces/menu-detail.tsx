@@ -1,4 +1,4 @@
-import { MenuItem } from "./Menu";
+import { MenuItem } from "./menu";
 
 export interface MenuDetailState {
     isOpen: boolean;

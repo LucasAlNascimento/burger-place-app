@@ -2,11 +2,11 @@ import { configureStore, combineReducers } from '@reduxjs/toolkit';
 import storage from 'redux-persist/lib/storage';
 import { persistStore, persistReducer } from 'redux-persist';
 
-import menuReducer from './slice/Menu';
-import basketReducer from './slice/Basket';
-import searchReducer from './slice/Search';
-import modalReducer from './slice/Modal';
-import menuDetailReducer from './slice/MenuDetail';
+import menuReducer from './slice/menu';
+import basketReducer from './slice/basket';
+import searchReducer from './slice/search';
+import modalReducer from './slice/modal';
+import menuDetailReducer from './slice/menu-detail';
 
 const persistConfig = {
   key: 'root',
