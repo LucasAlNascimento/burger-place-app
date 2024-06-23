@@ -62,7 +62,6 @@ export default function Basket() {
 
     window.addEventListener('resize', handleResize);
 
-    // Call the function initially to set the correct state
     handleResize();
 
     return () => {
@@ -73,8 +72,8 @@ export default function Basket() {
   if (!isOpen && !isLargeScreen) return null;
 
   return (
-    <div className={`lg:w-96 lg:bg-white lg:shadow-xl ${isLargeScreen ? 'lg:absolute lg:top-5 lg:right-4 lg:h-auto lg:overflow-y-auto lg:z-50' : 'lg:relative'}`}>
-      <div className='flex justify-center items-center w-full h-screen z-50 fixed top-0 left-0 right-0 bottom-0 bg-none lg:relative lg:h-full lg:w-96'>
+    <div className={`lg:w-96 lg:bg-white lg:shadow-xl ${isLargeScreen ? 'lg:absolute lg:top-5 lg:right-4 lg:h-auto lg:overflow-y-auto lg:z-0' : 'lg:relative'}`}>
+      <div className='flex justify-center items-center w-full h-screen z-0 fixed top-0 left-0 right-0 bottom-0 bg-none lg:relative lg:h-full lg:w-96'>
         <div className='w-full h-screen bg-white lg:h-full lg:shadow-xl'>
           <div className='w-full h-16 flex items-center border-b'>
             <h2 className='relative flex w-full items-center justify-center font-medium text-lg'>Basket</h2>

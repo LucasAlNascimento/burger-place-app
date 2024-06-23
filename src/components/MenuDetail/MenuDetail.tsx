@@ -6,18 +6,12 @@ import { addItem } from '../../redux/slice/Basket';
 import { Modifier, ModifierOption } from '../../interfaces/Menu';
 import { HiMinusCircle, HiPlusCircle } from 'react-icons/hi';
 
-
-
 const MenuDetail: React.FC = () => {
   const dispatch = useDispatch();
   const { isOpen, selectedItem, selectedModifiers } = useSelector((state: RootState) => state.menuDetail);
   const [quantity, setQuantity] = useState(1);
 
   if (!isOpen || !selectedItem) return null;
-
-  if (!selectedItem) {
-    return null;
-  }
 
   const formatPrice = (price: number): string => {
     return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(price);
@@ -46,7 +40,6 @@ const MenuDetail: React.FC = () => {
     }
   };
 
-
   const handleQuantityChange = (amount: number) => {
     const newQuantity = quantity + amount;
     if (newQuantity >= 1) {
@@ -55,16 +48,16 @@ const MenuDetail: React.FC = () => {
   };
 
   return (
-    <div className="flex items-center justify-center bg-black bg-opacity-50">
-      <div className="flex justify-center items-center w-full h-auto fixed top-0 left-0 right-0 bottom-0 bg-none">
-        <div className='w-full h-screen bg-white'>
+    <div className="fixed top-0 left-0 right-0 bottom-0 flex items-center justify-center bg-black bg-opacity-50 z-50">
+      <div className="flex justify-center items-center w-full h-screen bg-none lg:w-[480px] lg:h-[720px]">
+        <div className='relative w-full h-full bg-white overflow-y-auto'>
           <div className='h-64 overflow-hidden'>
             {selectedItem.images && selectedItem.images.length > 0 && (
-              <img src={selectedItem.images[0]?.image} alt={selectedItem.name} className='flex w-full items-center justify-center -mt-14' />
+              <img src={selectedItem.images[0]?.image} alt={selectedItem.name} className='w-full object-cover h-64' />
             )}
-            <img src="public/assets/closeicon.svg"onClick={handleCloseModal} className='text-4xl absolute text-white top-7 right-3 cursor-pointer'/>
+            <img src="public/assets/closeicon.svg" alt="Botão de Fechar" onClick={handleCloseModal} className='absolute top-3 right-3 text-4xl text-white cursor-pointer'/>
           </div>
-          <div className='flex flex-col w-full'>
+          <div className='flex flex-col h-full'>
             <h2 className="p-5 text-xl font-bold">{selectedItem.name}</h2>
             <p className='px-5 text-gray-600 -mt-3'>{selectedItem.description}</p>
             {selectedItem.modifiers && selectedItem.modifiers.length > 0 && (
@@ -100,16 +93,15 @@ const MenuDetail: React.FC = () => {
               </div>
             )}
           </div>
-          <div className='flex flex-col absolute bottom-0 justify-center w-full h-40 bg-gray-100 px-12 gap-2 border-t border-gray-200'>
-
-          <div className='flex items-center justify-center gap-4'>
-            <button onClick={() => handleQuantityChange(-1)} className='text-4xl text-gray-400'><HiMinusCircle /></button>
-            <span>{quantity}</span>
-            <button onClick={() => handleQuantityChange(1)} className='text-4xl text-[#4F372F]'><HiPlusCircle /></button>
-          </div>
-          <button onClick={handleAddToBasket} className='w-full h-10 bg-[#4F372F] text-white p-2 mt-2 rounded-[40px]'>
-            Add to Order
-          </button>
+          <div className='flex flex-col items-center justify-center bg-gray-100 py-4 px-5 gap-4 border-t border-gray-200 absolute bottom-auto left-0 right-0'>
+            <div className='flex items-center justify-center gap-4'>
+              <button onClick={() => handleQuantityChange(-1)} className='text-4xl text-gray-400'><HiMinusCircle /></button>
+              <span>{quantity}</span>
+              <button onClick={() => handleQuantityChange(1)} className='text-4xl text-[#4F372F]'><HiPlusCircle /></button>
+            </div>
+            <button onClick={handleAddToBasket} className='w-full h-10 bg-[#4F372F] text-white rounded-[40px]'>
+              Add to Order
+            </button>
           </div>
         </div>
       </div>
