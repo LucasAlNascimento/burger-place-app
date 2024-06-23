@@ -1,7 +1,8 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+// redux/slice/Basket.ts
 
-import { BasketState } from '../../interfaces/Basket';
-import { MenuItem, Modifier } from '../../interfaces/Menu';
+import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { BasketState, BasketItem } from '../../interfaces/Basket';
+import { Modifier } from '../../interfaces/Menu';
 
 const initialState: BasketState = {
   items: [],
@@ -11,7 +12,7 @@ const basketSlice = createSlice({
   name: 'basket',
   initialState,
   reducers: {
-    addItem(state, action: PayloadAction<MenuItem>) {
+    addItem(state, action: PayloadAction<BasketItem>) {
       const newItem = action.payload;
 
       const existingItemIndex = state.items.findIndex(item => {
@@ -23,7 +24,7 @@ const basketSlice = createSlice({
             const newModifier = newItem.modifiers.find(mod => mod.id === existingModifier.id);
 
             if (!newModifier || existingModifier.selectedOptionId !== newModifier.selectedOptionId) {
-              return false; 
+              return false;
             }
           }
         }
@@ -32,17 +33,17 @@ const basketSlice = createSlice({
       });
 
       if (existingItemIndex !== -1) {
-        state.items[existingItemIndex].quantity += 1;
+        state.items[existingItemIndex].quantity += newItem.quantity;
       } else {
-        state.items.push({ ...newItem, quantity: 1 });
+        state.items.push({ ...newItem, quantity: newItem.quantity || 1 });
       }
 
       localStorage.setItem('basket', JSON.stringify(state));
     },
-    removeItem: (state, action: PayloadAction<{ id: number, modifiers?: Modifier[] }>) => {
+    removeItem(state, action: PayloadAction<{ id: number; modifiers?: Modifier[] }>) {
       const { id, modifiers } = action.payload;
       const existingItemIndex = state.items.findIndex(
-        i => i.id === id && JSON.stringify(i.modifiers) === JSON.stringify(modifiers)
+        item => item.id === id && JSON.stringify(item.modifiers) === JSON.stringify(modifiers)
       );
 
       if (existingItemIndex !== -1) {
@@ -53,11 +54,11 @@ const basketSlice = createSlice({
           state.items.splice(existingItemIndex, 1);
         }
       }
+
+      localStorage.setItem('basket', JSON.stringify(state));
     },
   },
 });
 
-
 export const { addItem, removeItem } = basketSlice.actions;
-
 export default basketSlice.reducer;

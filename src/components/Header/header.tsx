@@ -1,7 +1,7 @@
 export default function Header() {
     return (
         <main className="flex flex-col">
-            <header className="flex items-center justify-center bg-[#4F372F] text-white text-lg h-16 z-10">
+            <header className="flex items-center justify-center bg-[#4F372F] text-white text-lg h-16 ">
                 <h1>Menu</h1>
             </header>
             <div className="relative flex items-center justify-center w-full h-[150px] -z-0 overflow-hidden">

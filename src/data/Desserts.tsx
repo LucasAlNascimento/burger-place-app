@@ -1,24 +1,23 @@
 import { useEffect } from 'react';
-
 import { useSelector, useDispatch } from 'react-redux';
 import { AppDispatch, RootState } from '../redux/Store';
 import { fetchMenu } from '../redux/slice/Menu';
+import { openMenuDetail } from '../redux/slice/MenuDetail';
 
 import { Menu, MenuItem } from '../interfaces/Menu';
+import MenuDetail from '../components/MenuDetail/MenuDetail';
 
 import { IoIosArrowUp } from "react-icons/io";
-
 
 
 const formatPrice = (price: number): string => {
     return new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(price);
 };
 
-export default function DrinksData() {
-
+export default function DessertsData() {
     const dispatch: AppDispatch = useDispatch();
     const { isLoading, data, isError } = useSelector((state: RootState) => state.menu);
-    const searchTerm = useSelector((state: RootState) => state.search.term)
+    const searchTerm = useSelector((state: RootState) => state.search.term);
 
     useEffect(() => {
         dispatch(fetchMenu());
@@ -47,7 +46,11 @@ export default function DrinksData() {
         });
     });
 
-    const filteredItems = filteredDesserts.filter(item => item.name.toLowerCase().includes(searchTerm.toLowerCase()))
+    const filteredItems = filteredDesserts.filter(item => item.name.toLowerCase().includes(searchTerm.toLowerCase()));
+
+    const handleItemClick = (item: MenuItem) => {
+        dispatch(openMenuDetail(item));
+    };
 
     return (
         <div className='flex flex-col gap-8'>
@@ -57,7 +60,7 @@ export default function DrinksData() {
             </div>
             <ul>
                 {filteredItems.map((item: MenuItem) => (
-                    <li key={item.id} className='flex mb-7 p-5 justify-between w-full h-auto hover:bg-gray-100 hover:scale-95 hover:rounded-md hover:transition-all hover:ease-in-out hover:duration-500 duration-500'>
+                    <li key={item.id} onClick={() => handleItemClick(item)} className='flex mb-7 p-5 justify-between w-full h-auto cursor-pointer hover:bg-gray-100 hover:scale-95 hover:rounded-md hover:transition-all hover:ease-in-out hover:duration-500 duration-500'>
                         <div className='flex flex-col w-full'>
                             <h4 className='font-medium'>{item.name}</h4>
                             <p className='text-[#464646] font-light'>{item.description}</p>
@@ -66,6 +69,7 @@ export default function DrinksData() {
                     </li>
                 ))}
             </ul>
+            <MenuDetail />
         </div>
     );
 }
