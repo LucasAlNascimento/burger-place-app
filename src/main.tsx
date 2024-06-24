@@ -8,12 +8,13 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
 import Home from './containers/Home/home'
 
-import "./styles.css"
+import '../public/styles.css'
+
 import { PersistGate } from 'redux-persist/integration/react'
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Home />,
   },
 ]);
