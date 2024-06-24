@@ -71,7 +71,7 @@ const MenuDetail: React.FC = () => {
             {selectedItem.images && selectedItem.images.length > 0 && (
               <img src={selectedItem.images[0]?.image} alt={selectedItem.name} className='w-full object-cover h-64' />
             )}
-            <img src="public/assets/closeicon.svg" alt="Botão de Fechar" onClick={handleCloseModal} className='absolute top-3 right-3 text-4xl text-white cursor-pointer'/>
+            <img src="/assets/closeicon.svg" alt="Botão de Fechar" onClick={handleCloseModal} className='absolute top-3 right-3 text-4xl text-white cursor-pointer'/>
           </div>
           <div className='flex flex-col h-auto'>
             <h2 className="p-5 text-xl font-bold">{selectedItem.name}</h2>

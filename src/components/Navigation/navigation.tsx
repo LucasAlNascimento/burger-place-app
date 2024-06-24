@@ -18,7 +18,7 @@ export default function Navigation() {
                         <button onClick={() => categoryChange('hamburguer')}>
                             <div className={`flex items-center justify-center relative w-28 h-28 rounded-full ${activeCategory === 'hamburguer' ? 'border-2 border-black' : ''}`}>
                                 <div className="relative w-[100px] h-[100px] rounded-full overflow-hidden">
-                                    <img src="public/assets/burgernavigation.jfif" alt="hamburguer" className="absolute left-1 scale-[160%] w-full h-auto" />
+                                    <img src="/assets/burgernavigation.jfif" alt="hamburguer" className="absolute left-1 scale-[160%] w-full h-auto" />
                                 </div>
                             </div>
                             <h2 className={`mt-5 ${activeCategory === 'hamburguer' ? 'font-bold pb-4 border-b-2 border-black' : ''}`}>Burguers</h2>
@@ -28,7 +28,7 @@ export default function Navigation() {
                         <button onClick={() => categoryChange('drinks')}>
                             <div className={`flex items-center justify-center relative w-28 h-28 rounded-full ${activeCategory === 'drinks' ? 'border-2 border-black' : ''}`}>
                                 <div className="relative w-[100px] h-[100px] rounded-full overflow-hidden">
-                                    <img src="public/assets/drinksnavigation.png" alt="drinks" className="absolute top-1 scale-[190%] w-full h-auto" />
+                                    <img src="/assets/drinksnavigation.png" alt="drinks" className="absolute top-1 scale-[190%] w-full h-auto" />
                                 </div>
                             </div>
                             <h2 className={`mt-5 ${activeCategory === 'drinks' ? 'font-bold pb-4 border-b-2 border-black' : ''}`}>Drinks</h2>
@@ -38,7 +38,7 @@ export default function Navigation() {
                         <button onClick={() => categoryChange('desserts')}>
                             <div className={`flex items-center justify-center relative w-28 h-28 rounded-full ${activeCategory === 'desserts' ? 'border-2 border-black' : ''}`}>
                                 <div className="relative w-[100px] h-[100px] rounded-full overflow-hidden">
-                                    <img src="public/assets/dessertsnavigation.jfif" alt="desserts" className="absolute bottom-1 left-1 scale-[110%] w-full h-auto z-0" />
+                                    <img src="/assets/dessertsnavigation.jfif" alt="desserts" className="absolute bottom-1 left-1 scale-[110%] w-full h-auto z-0" />
                                 </div>
                             </div>
                             <h2 className={`mt-5 ${activeCategory === 'desserts' ? 'font-bold pb-4 border-b-2 border-black' : ''}`}>Desserts</h2>
