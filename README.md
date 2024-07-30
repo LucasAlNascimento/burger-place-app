@@ -12,10 +12,10 @@ https://chromewebstore.google.com/detail/moesif-origincors-changer/digfbfaphojjn
 - TypeScript
 
 ### Frameworks
-- React
 - Tailwind CSS
 
 ### Libraries
+- React
 - Axios
 - Redux
 
