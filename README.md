@@ -5,6 +5,7 @@ https://burger-place-app.vercel.app/
 
 ### Extensions
 !! MANDATORY USE OF THE BELOW CHROME EXTENSION TO DEAL WITH CORS POLICY AND TO REMOVE INFINITE DATA LOADING BEHAVIOR COMING FROM API !!
+
 https://chromewebstore.google.com/detail/moesif-origincors-changer/digfbfaphojjndkpccljibejjbppifbc
 
 ### Languages
