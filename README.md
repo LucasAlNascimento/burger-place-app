@@ -1,7 +1,10 @@
 # 🍔 Burguer Place Application 🍔
 
 ### Access to App in Production | Vercel
-https://experis-frontend-challenge.vercel.app/
+https://burger-place-app.vercel.app/
+
+### Extensions | !! MANDATORY download and use of the extension to deal with CORS policy coming from Back-End !!
+https://chromewebstore.google.com/detail/moesif-origincors-changer/digfbfaphojjndkpccljibejjbppifbc
 
 ### Languages
 - TypeScript
