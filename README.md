@@ -1,5 +1,4 @@
-# Experis Front-End Challenge
-## 🍔 Burguer Place Application 🍔
+# 🍔 Burguer Place Application 🍔
 
 ### Access to App in Production | Vercel
 https://experis-frontend-challenge.vercel.app/
