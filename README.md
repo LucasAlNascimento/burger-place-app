@@ -3,7 +3,9 @@
 ### Access to App in Production | Vercel
 https://burger-place-app.vercel.app/
 
-### Extensions | !! MANDATORY USE OF THE CHROME EXTENSION TO DEAL WITH CORS POLICY COMING FROM BACK-END !!
+!! MANDATORY USE OF THE BELOW CHROME EXTENSION TO DEAL WITH CORS POLICY COMING FROM BACK-END !!
+
+### Extensions
 https://chromewebstore.google.com/detail/moesif-origincors-changer/digfbfaphojjndkpccljibejjbppifbc
 
 ### Languages
