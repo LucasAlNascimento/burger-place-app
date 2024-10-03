@@ -4,7 +4,7 @@ import { Menu } from "../../interfaces/menu";
 export const fetchMenu = createAsyncThunk(
     'fetchMenu', 
     async () => {
-    const response = await fetch('https://cdn-dev.preoday.com/challenge/menu');
+    const response = await fetch('/api');
     return response.json();
 })
 
