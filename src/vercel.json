@@ -2,7 +2,7 @@
     "rewrites": [
       {
         "source": "/api/:path*",
-        "destination": "https://cdn-dev.preoday.com/challenge/menu:path*"
+        "destination": "https://cdn-dev.preoday.com/challenge/menu/:path*"
       }
     ]
   }
